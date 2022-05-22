@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище TradeBDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Hist_Postavka">
+          <Key>
+            <PropertyRef Name="id_hpost" />
+          </Key>
+          <Property Name="id_hpost" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="id_postav" Type="int" Nullable="false" />
+          <Property Name="kolvo" Type="float" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="trader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postav" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistChangePrice">
+          <Key>
+            <PropertyRef Name="id_h_chrg" />
+          </Key>
+          <Property Name="id_h_chrg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="date_change" Type="date" Nullable="false" />
+          <Property Name="old_price" Type="float" Nullable="false" />
+          <Property Name="new_price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Prod">
+          <Key>
+            <PropertyRef Name="id_h_prod" />
+          </Key>
+          <Property Name="id_h_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="date_prod" Type="date" Nullable="false" />
+          <Property Name="kolvo" Type="float" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="trader" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Postavka">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="id_postav" Type="int" Nullable="false" />
+          <Property Name="kolvo" Type="float" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="trader" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postav" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="id_postavsh" />
+          </Key>
+          <Property Name="id_postavsh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postav" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fio_zav" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prodazh">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tovar" Type="int" Nullable="false" />
+          <Property Name="date_prod" Type="date" Nullable="false" />
+          <Property Name="kolvo" Type="float" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="trader" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="id_tovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ed_izm" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="kolvo_sklad" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="id_work" />
+          </Key>
+          <Property Name="id_work" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar(max)" Nullable="false" />
+          <Property Name="trader" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Hist_Postavka_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="1" />
+          <End Role="Hist_Postavka" Type="Self.Hist_Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="id_postavsh" />
+            </Principal>
+            <Dependent Role="Hist_Postavka">
+              <PropertyRef Name="id_postav" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hist_Postavka_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Hist_Postavka" Type="Self.Hist_Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Hist_Postavka">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistChangePrice_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="HistChangePrice" Type="Self.HistChangePrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="HistChangePrice">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Prod_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="History_Prod" Type="Self.History_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="History_Prod">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavka_Postavshik">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="1" />
+          <End Role="Postavka" Type="Self.Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="id_postavsh" />
+            </Principal>
+            <Dependent Role="Postavka">
+              <PropertyRef Name="id_postav" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavka_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Postavka" Type="Self.Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Postavka">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prodazh_Tovar">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Prodazh" Type="Self.Prodazh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Prodazh">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TradeBDModelContainer">
+          <EntitySet Name="Hist_Postavka" EntityType="Self.Hist_Postavka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistChangePrice" EntityType="Self.HistChangePrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History_Prod" EntityType="Self.History_Prod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postavka" EntityType="Self.Postavka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postavshik" EntityType="Self.Postavshik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prodazh" EntityType="Self.Prodazh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovar" EntityType="Self.Tovar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Hist_Postavka_Postavshik" Association="Self.FK_Hist_Postavka_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Hist_Postavka" EntitySet="Hist_Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hist_Postavka_Tovar" Association="Self.FK_Hist_Postavka_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Hist_Postavka" EntitySet="Hist_Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistChangePrice_Tovar" Association="Self.FK_HistChangePrice_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="HistChangePrice" EntitySet="HistChangePrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Prod_Tovar" Association="Self.FK_History_Prod_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="History_Prod" EntitySet="History_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavka_Postavshik" Association="Self.FK_Postavka_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Postavka" EntitySet="Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavka_Tovar" Association="Self.FK_Postavka_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Postavka" EntitySet="Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prodazh_Tovar" Association="Self.FK_Prodazh_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Prodazh" EntitySet="Prodazh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TradeBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TradeBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hist_Postavka" EntityType="TradeBDModel.Hist_Postavka" />
+          <EntitySet Name="HistChangePrice" EntityType="TradeBDModel.HistChangePrice" />
+          <EntitySet Name="History_Prod" EntityType="TradeBDModel.History_Prod" />
+          <EntitySet Name="Postavka" EntityType="TradeBDModel.Postavka" />
+          <EntitySet Name="Postavshik" EntityType="TradeBDModel.Postavshik" />
+          <EntitySet Name="Prodazh" EntityType="TradeBDModel.Prodazh" />
+          <EntitySet Name="Tovar" EntityType="TradeBDModel.Tovar" />
+          <EntitySet Name="Workers" EntityType="TradeBDModel.Workers" />
+          <AssociationSet Name="FK_Hist_Postavka_Postavshik" Association="TradeBDModel.FK_Hist_Postavka_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Hist_Postavka" EntitySet="Hist_Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hist_Postavka_Tovar" Association="TradeBDModel.FK_Hist_Postavka_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Hist_Postavka" EntitySet="Hist_Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistChangePrice_Tovar" Association="TradeBDModel.FK_HistChangePrice_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="HistChangePrice" EntitySet="HistChangePrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Prod_Tovar" Association="TradeBDModel.FK_History_Prod_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="History_Prod" EntitySet="History_Prod" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavka_Postavshik" Association="TradeBDModel.FK_Postavka_Postavshik">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Postavka" EntitySet="Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Postavka_Tovar" Association="TradeBDModel.FK_Postavka_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Postavka" EntitySet="Postavka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prodazh_Tovar" Association="TradeBDModel.FK_Prodazh_Tovar">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Prodazh" EntitySet="Prodazh" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hist_Postavka">
+          <Key>
+            <PropertyRef Name="id_hpost" />
+          </Key>
+          <Property Name="id_hpost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="id_postav" Type="Int32" Nullable="false" />
+          <Property Name="kolvo" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="trader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postav" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Postavshik" Relationship="TradeBDModel.FK_Hist_Postavka_Postavshik" FromRole="Hist_Postavka" ToRole="Postavshik" />
+          <NavigationProperty Name="Tovar" Relationship="TradeBDModel.FK_Hist_Postavka_Tovar" FromRole="Hist_Postavka" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="HistChangePrice">
+          <Key>
+            <PropertyRef Name="id_h_chrg" />
+          </Key>
+          <Property Name="id_h_chrg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="date_change" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="old_price" Type="Double" Nullable="false" />
+          <Property Name="new_price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Tovar" Relationship="TradeBDModel.FK_HistChangePrice_Tovar" FromRole="HistChangePrice" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="History_Prod">
+          <Key>
+            <PropertyRef Name="id_h_prod" />
+          </Key>
+          <Property Name="id_h_prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="date_prod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="kolvo" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="trader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tovar" Relationship="TradeBDModel.FK_History_Prod_Tovar" FromRole="History_Prod" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Postavka">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="id_postav" Type="Int32" Nullable="false" />
+          <Property Name="kolvo" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="trader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postav" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Postavshik" Relationship="TradeBDModel.FK_Postavka_Postavshik" FromRole="Postavka" ToRole="Postavshik" />
+          <NavigationProperty Name="Tovar" Relationship="TradeBDModel.FK_Postavka_Tovar" FromRole="Postavka" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="id_postavsh" />
+          </Key>
+          <Property Name="id_postavsh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postav" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fio_zav" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Hist_Postavka" Relationship="TradeBDModel.FK_Hist_Postavka_Postavshik" FromRole="Postavshik" ToRole="Hist_Postavka" />
+          <NavigationProperty Name="Postavka" Relationship="TradeBDModel.FK_Postavka_Postavshik" FromRole="Postavshik" ToRole="Postavka" />
+        </EntityType>
+        <EntityType Name="Prodazh">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tovar" Type="Int32" Nullable="false" />
+          <Property Name="date_prod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="kolvo" Type="Double" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="trader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tovar" Relationship="TradeBDModel.FK_Prodazh_Tovar" FromRole="Prodazh" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="id_tovar" />
+          </Key>
+          <Property Name="id_tovar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ed_izm" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="kolvo_sklad" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Hist_Postavka" Relationship="TradeBDModel.FK_Hist_Postavka_Tovar" FromRole="Tovar" ToRole="Hist_Postavka" />
+          <NavigationProperty Name="HistChangePrice" Relationship="TradeBDModel.FK_HistChangePrice_Tovar" FromRole="Tovar" ToRole="HistChangePrice" />
+          <NavigationProperty Name="History_Prod" Relationship="TradeBDModel.FK_History_Prod_Tovar" FromRole="Tovar" ToRole="History_Prod" />
+          <NavigationProperty Name="Postavka" Relationship="TradeBDModel.FK_Postavka_Tovar" FromRole="Tovar" ToRole="Postavka" />
+          <NavigationProperty Name="Prodazh" Relationship="TradeBDModel.FK_Prodazh_Tovar" FromRole="Tovar" ToRole="Prodazh" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="id_work" />
+          </Key>
+          <Property Name="id_work" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="trader" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Hist_Postavka_Postavshik">
+          <End Type="TradeBDModel.Postavshik" Role="Postavshik" Multiplicity="1" />
+          <End Type="TradeBDModel.Hist_Postavka" Role="Hist_Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="id_postavsh" />
+            </Principal>
+            <Dependent Role="Hist_Postavka">
+              <PropertyRef Name="id_postav" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hist_Postavka_Tovar">
+          <End Type="TradeBDModel.Tovar" Role="Tovar" Multiplicity="1" />
+          <End Type="TradeBDModel.Hist_Postavka" Role="Hist_Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Hist_Postavka">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistChangePrice_Tovar">
+          <End Type="TradeBDModel.Tovar" Role="Tovar" Multiplicity="1" />
+          <End Type="TradeBDModel.HistChangePrice" Role="HistChangePrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="HistChangePrice">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Prod_Tovar">
+          <End Type="TradeBDModel.Tovar" Role="Tovar" Multiplicity="1" />
+          <End Type="TradeBDModel.History_Prod" Role="History_Prod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="History_Prod">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavka_Postavshik">
+          <End Type="TradeBDModel.Postavshik" Role="Postavshik" Multiplicity="1" />
+          <End Type="TradeBDModel.Postavka" Role="Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="id_postavsh" />
+            </Principal>
+            <Dependent Role="Postavka">
+              <PropertyRef Name="id_postav" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Postavka_Tovar">
+          <End Type="TradeBDModel.Tovar" Role="Tovar" Multiplicity="1" />
+          <End Type="TradeBDModel.Postavka" Role="Postavka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Postavka">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prodazh_Tovar">
+          <End Type="TradeBDModel.Tovar" Role="Tovar" Multiplicity="1" />
+          <End Type="TradeBDModel.Prodazh" Role="Prodazh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="id_tovar" />
+            </Principal>
+            <Dependent Role="Prodazh">
+              <PropertyRef Name="id_tovar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TradeBDModelContainer" CdmEntityContainer="TradeBDEntities">
+          <EntitySetMapping Name="Hist_Postavka">
+            <EntityTypeMapping TypeName="TradeBDModel.Hist_Postavka">
+              <MappingFragment StoreEntitySet="Hist_Postavka">
+                <ScalarProperty Name="postav" ColumnName="postav" />
+                <ScalarProperty Name="trader" ColumnName="trader" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="kolvo" ColumnName="kolvo" />
+                <ScalarProperty Name="id_postav" ColumnName="id_postav" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="id_hpost" ColumnName="id_hpost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistChangePrice">
+            <EntityTypeMapping TypeName="TradeBDModel.HistChangePrice">
+              <MappingFragment StoreEntitySet="HistChangePrice">
+                <ScalarProperty Name="new_price" ColumnName="new_price" />
+                <ScalarProperty Name="old_price" ColumnName="old_price" />
+                <ScalarProperty Name="date_change" ColumnName="date_change" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="id_h_chrg" ColumnName="id_h_chrg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Prod">
+            <EntityTypeMapping TypeName="TradeBDModel.History_Prod">
+              <MappingFragment StoreEntitySet="History_Prod">
+                <ScalarProperty Name="trader" ColumnName="trader" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="kolvo" ColumnName="kolvo" />
+                <ScalarProperty Name="date_prod" ColumnName="date_prod" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="id_h_prod" ColumnName="id_h_prod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postavka">
+            <EntityTypeMapping TypeName="TradeBDModel.Postavka">
+              <MappingFragment StoreEntitySet="Postavka">
+                <ScalarProperty Name="postav" ColumnName="postav" />
+                <ScalarProperty Name="trader" ColumnName="trader" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="kolvo" ColumnName="kolvo" />
+                <ScalarProperty Name="id_postav" ColumnName="id_postav" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postavshik">
+            <EntityTypeMapping TypeName="TradeBDModel.Postavshik">
+              <MappingFragment StoreEntitySet="Postavshik">
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="fio_zav" ColumnName="fio_zav" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="postav" ColumnName="postav" />
+                <ScalarProperty Name="id_postavsh" ColumnName="id_postavsh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prodazh">
+            <EntityTypeMapping TypeName="TradeBDModel.Prodazh">
+              <MappingFragment StoreEntitySet="Prodazh">
+                <ScalarProperty Name="trader" ColumnName="trader" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="kolvo" ColumnName="kolvo" />
+                <ScalarProperty Name="date_prod" ColumnName="date_prod" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovar">
+            <EntityTypeMapping TypeName="TradeBDModel.Tovar">
+              <MappingFragment StoreEntitySet="Tovar">
+                <ScalarProperty Name="kolvo_sklad" ColumnName="kolvo_sklad" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ed_izm" ColumnName="ed_izm" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_tovar" ColumnName="id_tovar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="TradeBDModel.Workers">
+              <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="trader" ColumnName="trader" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id_work" ColumnName="id_work" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
