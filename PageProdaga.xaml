@@ -11,8 +11,8 @@
     <Grid Background="#FFC8C8C8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="633*"/>
-            <ColumnDefinition Width="166*"/>
+            <ColumnDefinition Width="441*"/>
+            <ColumnDefinition Width="358*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
             <RowDefinition Height="64*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="HistProdGrid" HorizontalAlignment="Left" Margin="10,10,0,18" Width="618" AutoGenerateColumns="False" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <DataGrid x:Name="HistProdGrid" Margin="10,10,7,18" AutoGenerateColumns="False" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Tovar.name}" ClipboardContentBinding="{x:Null}" Header="Название"/>
                 <DataGridTextColumn Binding="{Binding date_prod}" ClipboardContentBinding="{x:Null}" Header="Дата продажи"/>
@@ -32,9 +32,28 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AddBut" Content="Продажа" HorizontalAlignment="Left" Height="37" Margin="10,18,0,0" VerticalAlignment="Top" Width="119" Click="AddTovBut_Click" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <Button x:Name="Querybut" Content="Запрос-&gt;" HorizontalAlignment="Left" Margin="55,15,0,0" VerticalAlignment="Top" Width="102" Height="37" Grid.Row="2" Grid.Column="2" Visibility="Hidden"/>
-        <Button x:Name="PostavBut" Content="История поставок" HorizontalAlignment="Left" Height="47" Margin="11,10,0,0" VerticalAlignment="Top" Width="146" Click="PostavBut_Click" Grid.RowSpan="2" Grid.Column="2"/>
-        <Button x:Name="TovarBut" Content="Товар" HorizontalAlignment="Left" Height="47" Margin="11,79,0,0" VerticalAlignment="Top" Width="146" Click="ProdagBut_Click" Grid.RowSpan="2" Grid.Column="2"/>
+        <Button x:Name="PostavBut" Content="История поставок" Height="47" Margin="11,10,9,0" VerticalAlignment="Top" Click="PostavBut_Click" Grid.RowSpan="2" Grid.Column="2"/>
+        <Button x:Name="TovarBut" Content="Товар" Height="47" Margin="11,79,9,0" VerticalAlignment="Top" Click="ProdagBut_Click" Grid.RowSpan="2" Grid.Column="2"/>
+        <Button x:Name="Querybut" Content="Запрос" Margin="8,15,0,0" VerticalAlignment="Top" Height="37" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="58" Click="Querybut_Click"/>
+        <Button x:Name="CancButt" Content="Отмена" HorizontalAlignment="Right" VerticalAlignment="Top" Width="52" Grid.Column="2" Margin="0,18,9,0" Grid.Row="2" Height="34" Click="CancButt_Click"/>
+        <CheckBox x:Name="TovarQCheck" Content="Товар" Grid.Column="2" HorizontalAlignment="Left" Margin="11,307,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="20" Unchecked="TovarQCheck_Unchecked" Checked="TovarQCheck_Checked" Width="56"/>
+        <CheckBox x:Name="KolQCheck" Content="Количество" Grid.Column="2" HorizontalAlignment="Left" Margin="11,333,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="20" Checked="KolQCheck_Checked" Unchecked="KolQCheck_Unchecked" Width="90"/>
+        <CheckBox x:Name="PriceQCheck" Content="Цена" Grid.Column="2" HorizontalAlignment="Left" Margin="11,358,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="20" Checked="PriceQCheck_Checked" Unchecked="PriceQCheck_Unchecked" Width="51"/>
+        <CheckBox x:Name="DateQCheck" Content="Дата" Grid.Column="2" HorizontalAlignment="Left" Margin="11,282,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="20" Unchecked="DateQCheck_Unchecked" Checked="DateQCheck_Checked" Width="47"/>
+        <ComboBox x:Name="TovarQCombo" Grid.Column="2" Margin="118,301,7,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="22" Visibility="Hidden"/>
+        <TextBox x:Name="Kol1Box" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="148,333,0,0" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" PreviewTextInput="Kol1Box_PreviewTextInput" Visibility="Hidden"/>
+        <TextBox x:Name="Kol2Box" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="266,333,0,0" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" PreviewTextInput="Kol2Box_PreviewTextInput" Visibility="Hidden"/>
+        <Label x:Name="l1kq" Content="от:" Grid.Column="2" HorizontalAlignment="Left" Margin="118,328,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="25" Visibility="Hidden"/>
+        <Label x:Name="l2kq" Content="до:" Grid.Column="2" HorizontalAlignment="Left" Margin="236,328,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="26" Visibility="Hidden"/>
+        <TextBox x:Name="Price1Box" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="148,359,0,0" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" PreviewTextInput="Price1Box_PreviewTextInput" Visibility="Hidden"/>
+        <TextBox x:Name="Price2Box" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="266,359,0,0" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" PreviewTextInput="Price2Box_PreviewTextInput" Visibility="Hidden"/>
+        <Label x:Name="l1pq" Content="от:" Grid.Column="2" HorizontalAlignment="Left" Margin="118,354,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="25" Visibility="Hidden"/>
+        <Label x:Name="l2pq" Content="до:" Grid.Column="2" HorizontalAlignment="Left" Margin="236,354,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="26" Width="26" Visibility="Hidden"/>
+        <DatePicker x:Name="DateQ1P" Grid.Column="2" HorizontalAlignment="Left" Margin="135,272,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="98" Height="24" Visibility="Hidden"/>
+        <DatePicker x:Name="DateQ2P" Grid.Column="2" HorizontalAlignment="Right" Margin="0,272,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="98" Height="24" Visibility="Hidden"/>
+        <Label x:Name="lbd1" Content="от" Grid.Column="2" HorizontalAlignment="Left" Height="26" Margin="109,271,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="21" Visibility="Hidden"/>
+        <Label x:Name="lbd2" Content="до" Grid.Column="2" HorizontalAlignment="Right" Height="26" Margin="0,272,92,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="28" Visibility="Hidden"/>
+        <Button x:Name="RepButton" Content="Отчёт" Grid.Column="2" Height="34" Margin="152,18,142,0" Grid.Row="2" VerticalAlignment="Top" Click="RepButton_Click"/>
 
     </Grid>
 </Page>

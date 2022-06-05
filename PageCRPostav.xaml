@@ -25,6 +25,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Tovar.name}" ClipboardContentBinding="{x:Null}" Header="Товар"/>
                 <DataGridTextColumn Binding="{Binding Postavshik.postav}" ClipboardContentBinding="{x:Null}" Header="Поставщик"/>
+                <DataGridTextColumn Binding="{Binding date_postav}" ClipboardContentBinding="{x:Null}" Header="Дата поставки"/>
                 <DataGridTextColumn Binding="{Binding kolvo}" ClipboardContentBinding="{x:Null}" Header="Количество"/>
                 <DataGridTextColumn Binding="{Binding price}" ClipboardContentBinding="{x:Null}" Header="Цена"/>
                 <DataGridTextColumn Binding="{Binding trader}" ClipboardContentBinding="{x:Null}" Header="Ответственный за приём"/>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DipTradeProj.Properties
+namespace DipTradeProj
 {
     /// <summary>
-    /// Логика взаимодействия для PagePostavshik.xaml
+    /// Логика взаимодействия для PageCheck.xaml
     /// </summary>
-    public partial class PagePostavshik : Page
+    public partial class PageCheck : Page
     {
-        public PagePostavshik()
+        public PageCheck()
         {
             InitializeComponent();
         }

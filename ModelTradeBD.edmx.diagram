@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6d7f47d84594597b0347cd88866ab1f" Name="Diagram1">
+        <EntityTypeShape EntityType="TradeBDModel.Hist_Postavka" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.HistChangePrice" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.History_Prod" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.Postavka" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.Postavshik" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.Prodazh" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.Tovar" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradeBDModel.Workers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TradeBDModel.FK_Hist_Postavka_Postavshik" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_Hist_Postavka_Tovar" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_HistChangePrice_Tovar" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_History_Prod_Tovar" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_Postavka_Postavshik" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_Postavka_Tovar" ManuallyRouted="false" />
+        <AssociationConnector Association="TradeBDModel.FK_Prodazh_Tovar" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

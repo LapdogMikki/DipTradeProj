@@ -263,8 +263,11 @@ namespace DipTradeProj
             }
             Nav.NavFrame.Navigate(new PageProdaga());
         }
-        
+
+        private void CheckBut_Click(object sender, RoutedEventArgs e)
+        {
             
         }
+    }
     }
 

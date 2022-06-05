@@ -87,6 +87,7 @@ namespace DipTradeProj
             }
             _postCon.kolvo = Convert.ToDouble(Kolvo.Text);
             _postCon.price = Convert.ToDouble(ItogPrc.Content);
+            _postCon.date_postav = DateTime.Today;
             _postCon.trader = "Куликова Д.И";
             _postCon.postav = "Голиков Ю.А";
             if (_postCon.rowid == 0)
@@ -223,6 +224,7 @@ namespace DipTradeProj
                     _tovar.kolvo_sklad = _tovar.kolvo_sklad + ListProd[i].kolvo;
                     _his_post.id_postav = ListProd[i].id_postav;
                     _his_post.id_tovar = ListProd[i].id_tovar;
+                    _his_post.date_postav = ListProd[i].date_postav;
                     _his_post.kolvo = ListProd[i].kolvo;
                     _his_post.price = ListProd[i].price;
                     _his_post.trader = ListProd[i].trader;

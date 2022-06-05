@@ -17,6 +17,7 @@ namespace DipTradeProj
         public int id_hpost { get; set; }
         public int id_tovar { get; set; }
         public int id_postav { get; set; }
+        public System.DateTime date_postav { get; set; }
         public double kolvo { get; set; }
         public double price { get; set; }
         public string trader { get; set; }
