@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace DipTradeProj
 {
@@ -133,7 +135,7 @@ namespace DipTradeProj
                     int idt = qtov[0].id_tovar;
                     query = query.Where(p => p.id_tovar == idt);
                 }
-                
+
                 if (KolQCheck.IsChecked == true)
                 {
                     if (String.IsNullOrWhiteSpace(Kol1Box.Text) || (String.IsNullOrWhiteSpace(Kol2Box.Text)))
@@ -182,42 +184,11 @@ namespace DipTradeProj
 
         private void RepButton_Click(object sender, RoutedEventArgs e)
         {
-            var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream(Application.StartupPath + @"\Document.pdf", FileMode.Create));
-            doc.Open();
-            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(Application.StartupPath + @"/images.jpg");
-            jpg.Alignment = Element.ALIGN_CENTER;
-            doc.Add(jpg);
-            PdfPTable table = new PdfPTable(3);
-            PdfPCell cell = new PdfPCell(new Phrase("Simple table",
-              new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 16,
-              iTextSharp.text.Font.NORMAL, new BaseColor(Color.Orange))));
-            cell.BackgroundColor = new BaseColor(Color.Wheat);
-            cell.Padding = 5;
-            cell.Colspan = 3;
-            cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            table.AddCell(cell);
-            table.AddCell("Col 1 Row 1");
-            table.AddCell("Col 2 Row 1");
-            table.AddCell("Col 3 Row 1");
-            table.AddCell("Col 1 Row 2");
-            table.AddCell("Col 2 Row 2");
-            table.AddCell("Col 3 Row 2");
-            jpg = iTextSharp.text.Image.GetInstance(Application.StartupPath + @"/left.jpg");
-            cell = new PdfPCell(jpg);
-            cell.Padding = 5;
-            cell.HorizontalAlignment = PdfPCell.ALIGN_LEFT;
-            table.AddCell(cell);
-            cell = new PdfPCell(new Phrase("Col 2 Row 3"));
-            cell.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
-            cell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
-            table.AddCell(cell);
-            jpg = iTextSharp.text.Image.GetInstance(Application.StartupPath + @"/right.jpg");
-            cell = new PdfPCell(jpg);
-            cell.Padding = 5;
-            cell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
-            table.AddCell(cell);
-            doc.Add(table);
+           
+
+
+            }
         }
     }
-}
+
+

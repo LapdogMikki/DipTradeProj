@@ -29,6 +29,7 @@ namespace DipTradeProj
         public string ed_izm { get; set; }
         public double price { get; set; }
         public double kolvo_sklad { get; set; }
+        public double zakup_price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hist_Postavka> Hist_Postavka { get; set; }

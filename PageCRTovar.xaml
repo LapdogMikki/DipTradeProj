@@ -10,8 +10,8 @@
     <Grid Background="#FFC8C8C8">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
-            <RowDefinition Height="177*"/>
-            <RowDefinition Height="86*"/>
+            <RowDefinition Height="214*"/>
+            <RowDefinition Height="49*"/>
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,10 +20,10 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="NameT" HorizontalAlignment="Left" Height="26" Margin="154,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344" Text="{Binding name}" Grid.RowSpan="2" Grid.Column="1"/>
-        <TextBox x:Name="PrcT" Height="26" Margin="154,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding price}" HorizontalAlignment="Left" Width="345" Grid.RowSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="PrcT" Height="26" Margin="155,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding price}" HorizontalAlignment="Left" Width="345" Grid.RowSpan="2" Grid.Column="1"/>
         <Label Content="Название" HorizontalAlignment="Left" Margin="9,22,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
         <Label Content="Единицы измерения" HorizontalAlignment="Left" Margin="9,61,0,0" VerticalAlignment="Top" Width="128" Height="26" RenderTransformOrigin="0.508,0.808" Grid.RowSpan="2" Grid.Column="1"/>
-        <Label Content="Цена" HorizontalAlignment="Left" Margin="9,92,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
+        <Label Content="Цена" HorizontalAlignment="Left" Margin="10,136,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
         <Button x:Name="DateButt" Content="Внести" HorizontalAlignment="Left" Height="30" Margin="6,13,0,0" VerticalAlignment="Top" Width="79" Grid.Row="2" Grid.Column="1" Click="DateButt_Click"/>
         <ComboBox x:Name="EdIzm" HorizontalAlignment="Left" Margin="154,61,0,0" VerticalAlignment="Top" Width="344" Height="22" Grid.RowSpan="2" Grid.Column="1">
             <ComboBoxItem Content="шт."/>
@@ -31,7 +31,9 @@
             <ComboBoxItem Content="л."/>
         </ComboBox>
         <Button x:Name="CancelBut" Content="Отмена" HorizontalAlignment="Left" Height="30" Margin="419,13,0,0" VerticalAlignment="Top" Width="79" Click="CancelBut_Click" Grid.Row="2" Grid.Column="1"/>
-        <TextBox x:Name="KolTxt" Margin="154,134,0,0" TextWrapping="Wrap" Text="{Binding kolvo_sklad}" HorizontalAlignment="Left" Width="344" Height="26" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="1"/>
-        <Label Content="Количество" HorizontalAlignment="Left" Margin="9,134,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="KolTxt" Margin="155,178,0,0" TextWrapping="Wrap" Text="{Binding kolvo_sklad}" HorizontalAlignment="Left" Width="344" Height="26" VerticalAlignment="Top" Grid.RowSpan="2" Grid.Column="1"/>
+        <Label Content="Количество" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="ZTxtPrc" Height="26" Margin="155,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding zakup_price}" HorizontalAlignment="Left" Width="345" Grid.RowSpan="2" Grid.Column="1"/>
+        <Label Content="Закупочная цена" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="128" Height="26" Grid.RowSpan="2" Grid.Column="1"/>
     </Grid>
 </Page>

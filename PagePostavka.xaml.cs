@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using FastReport;
+using FastReport.Data;
 namespace DipTradeProj
 {
     /// <summary>
@@ -119,10 +120,9 @@ namespace DipTradeProj
                         MessageBox.Show("Выберите дату");
                         return;
                     }
-                    var Q1 = (System.DateTime)DateQ1P.SelectedDate;
-                    var Q2 = (System.DateTime)DateQ2P.SelectedDate;
+                    
 
-                    query = query.Where(p => p.date_postav >= Q1.Date && p.date_postav <= Q2.Date);
+                    query = query.Where(p => p.date_postav >= DateQ1P.SelectedDate && p.date_postav <= DateQ2P.SelectedDate);
                 }
                     if (TovarQCheck.IsChecked == true)
                     {
@@ -210,6 +210,22 @@ namespace DipTradeProj
         private void Price2Box_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void ReportBut_Click(object sender, RoutedEventArgs e)
+        {
+            using (Report report = new Report()){
+                try
+                {
+                    report.Load("histprod.frx");
+                    report.Prepare();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+               
+            }
         }
     }
 }

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/09/2022 23:12:26" ReportInfo.Modified="06/09/2022 23:33:48" ReportInfo.CreatorVersion="2022.2.0.0">
+  <Styles Name="Standard">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqM3/HbiZANEYP3Y6oNtE7mrUmT0ytl94C6DYS4DXvgc8JqhVjVQGe7Sc2pOMNI3eDZigSFtXkQ0g9r/qnxtmA8ah4sOO0ld74YowHYs4IXap1JC0SvFf+2hLmqv3zi+UHWoo2bXf+Jz6oCL/Xt96RKK1QeRZO1DwUJdFAPQKkshgkJvu5wAABzHJjOXiVId7p">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT T.id_tovar, T.name, T.ed_izm, T.zakup_price, T.price, T.kolvo_sklad, H.id_hpost, H.id_tovar, H.id_postav, H.date_postav, H.kolvo, H.price, H.trader, H.postav, P.id_postavsh, P.postav, P.phone, P.fio_zav, P.adres&#13;&#10;FROM &quot;Tovar&quot; T, &quot;Hist_Postavka&quot; H, &quot;Postavshik&quot; P&#13;&#10;WHERE T.id_tovar=H.id_tovar AND P.id_postavsh=H.id_postav">
+        <Column Name="id_tovar" DataType="System.Int32"/>
+        <Column Name="name" DataType="System.String"/>
+        <Column Name="ed_izm" DataType="System.String"/>
+        <Column Name="zakup_price" DataType="System.Double"/>
+        <Column Name="price" DataType="System.Double"/>
+        <Column Name="kolvo_sklad" DataType="System.Double"/>
+        <Column Name="id_hpost" DataType="System.Int32"/>
+        <Column Name="id_tovar1" DataType="System.Int32"/>
+        <Column Name="id_postav" DataType="System.Int32"/>
+        <Column Name="date_postav" DataType="System.DateTime"/>
+        <Column Name="kolvo" DataType="System.Double"/>
+        <Column Name="price1" DataType="System.Double"/>
+        <Column Name="trader" DataType="System.String"/>
+        <Column Name="postav" DataType="System.String"/>
+        <Column Name="id_postavsh" DataType="System.Int32"/>
+        <Column Name="postav1" DataType="System.String"/>
+        <Column Name="phone" DataType="System.String"/>
+        <Column Name="fio_zav" DataType="System.String"/>
+        <Column Name="adres" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Dock="Fill" Text="Отчёт по поставкам" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="56.7">
+      <TextObject Name="Text3" Left="311.85" Width="113.4" Height="18.9" Text="Дата поставки" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="425.25" Width="94.5" Height="18.9" Text="Количество" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text7" Left="519.75" Width="75.6" Height="18.9" Text="Цена" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text12" Left="9.45" Width="160.65" Height="18.9" Text="Товар" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text9" Left="595.35" Width="122.85" Height="18.9" Text="Ответственный" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text14" Left="170.1" Width="141.75" Height="18.9" Text="Поставщик" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="102.5" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Table">
+      <TextObject Name="Text15" Left="9.45" Width="160.65" Height="18.9" Text="[Table.name]" Font="Arial, 10pt"/>
+      <TextObject Name="Text16" Left="595.35" Width="122.85" Height="18.9" Text="[Table.trader]" Font="Arial, 10pt"/>
+      <TextObject Name="Text17" Left="170.1" Width="141.75" Height="18.9" Text="[Table.postav1]" Font="Arial, 10pt"/>
+      <TextObject Name="Text18" Left="311.85" Width="113.4" Height="18.9" Text="[Table.date_postav]" Format="Date" Format.Format="d" Font="Arial, 10pt"/>
+      <TextObject Name="Text19" Left="425.25" Width="94.5" Height="18.9" Text="[Table.kolvo]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text20" Left="519.75" Width="75.6" Height="18.9" Text="[Table.price1]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="125.4" Width="718.2" Height="359.1">
+      <TextObject Name="Text10" Width="718.2" Height="359.1" Dock="Fill" HorzAlign="Right" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

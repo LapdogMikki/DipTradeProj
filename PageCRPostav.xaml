@@ -50,7 +50,7 @@
         <Button x:Name="CancEdBut" Content="Отмена изменения" Grid.Column="2" HorizontalAlignment="Left" Height="38" Margin="123,175,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="132" Click="CancEdBut_Click"/>
         <Button x:Name="CancPokBut" Content="Отмена товара" Grid.Column="2" HorizontalAlignment="Left" Height="38" Margin="258,175,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="107" Click="CancPokBut_Click"/>
         <ComboBox x:Name="TovarCombo" Grid.Column="2" Margin="0,43,13,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="22" HorizontalAlignment="Right" Width="230" DropDownClosed="TovarCombo_DropDownClosed"/>
-        <Button x:Name="CheckBut" Content="Накладная" Grid.Column="2" Height="36" Margin="155,0,0,19" Grid.RowSpan="2" VerticalAlignment="Bottom" RenderTransformOrigin="0.721,0.528" HorizontalAlignment="Left" Width="104"/>
+        <Button x:Name="CheckBut" Content="Накладная" Grid.Column="2" Height="36" Margin="155,0,0,19" Grid.RowSpan="2" VerticalAlignment="Bottom" RenderTransformOrigin="0.721,0.528" HorizontalAlignment="Left" Width="104" Visibility="Hidden"/>
         <Button x:Name="OformButt" Content="Оформление поставки" Grid.Column="2" HorizontalAlignment="Left" Margin="11,0,0,19" Grid.RowSpan="2" Width="136" Height="36" VerticalAlignment="Bottom" Click="OformButt_Click"/>
         <Button x:Name="BackButton" Content="Отказ" Grid.Column="2" Margin="264,0,0,19" Grid.RowSpan="2" VerticalAlignment="Bottom" Height="36" HorizontalAlignment="Left" Width="107" Click="BackButton_Click"/>
         <Label Content="Итого:" Grid.Column="2" HorizontalAlignment="Left" Margin="11,240,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Height="26"/>

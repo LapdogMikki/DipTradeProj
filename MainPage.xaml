@@ -21,10 +21,11 @@
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="TovarGrid" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,10,0,23" Grid.RowSpan="2" Width="618" AutoGenerateColumns="False">
+        <DataGrid x:Name="TovarGrid" Grid.ColumnSpan="2" Margin="10,10,8,23" Grid.RowSpan="2" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Название"/>
                 <DataGridTextColumn Binding="{Binding ed_izm}" ClipboardContentBinding="{x:Null}" Header="Единица измерения"/>
+                <DataGridTextColumn Binding="{Binding zakup_price}" ClipboardContentBinding="{x:Null}" Header="Цена"/>
                 <DataGridTextColumn Binding="{Binding price}" ClipboardContentBinding="{x:Null}" Header="Цена"/>
                 <DataGridTextColumn Binding="{Binding kolvo_sklad}" ClipboardContentBinding="{x:Null}" Header="Количество на складе"/>
                 <DataGridTemplateColumn Width="auto">
@@ -37,11 +38,11 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AddTovBut" Grid.ColumnSpan="2" Content="Добавить" HorizontalAlignment="Left" Height="37" Margin="10,13,0,0" VerticalAlignment="Top" Width="119" Click="AddTovBut_Click" Grid.Row="2"/>
-        <Button x:Name="RemoveBut" Grid.ColumnSpan="2" Content="Удалить" HorizontalAlignment="Left" Margin="486,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="128" Height="37" Click="RemoveBut_Click"/>
+        <Button x:Name="RemoveBut" Grid.ColumnSpan="2" Content="Удалить" HorizontalAlignment="Right" Margin="0,10,22,0" Grid.Row="2" VerticalAlignment="Top" Width="128" Height="37" Click="RemoveBut_Click"/>
         <Button x:Name="Querybut" Content="Запрос-&gt;" HorizontalAlignment="Left" Margin="52,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="102" Height="37" Grid.Column="2" Visibility="Hidden"/>
-        <Button x:Name="PostavBut" Content="История поставок" HorizontalAlignment="Left" Height="47" Margin="8,10,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="146" Click="PostavBut_Click" Grid.Column="2"/>
-        <Button x:Name="ProdagBut" Content="История продаж" HorizontalAlignment="Left" Height="47" Margin="8,79,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="146" Click="ProdagBut_Click" Grid.Column="2"/>
-        <Button x:Name="HistButt" Content="История изменения цен" HorizontalAlignment="Left" Height="42" Margin="8,148,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="146" Grid.Column="2" Click="HistButt_Click"/>
+        <Button x:Name="PostavBut" Content="История поставок" Height="47" Margin="8,10,10,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="PostavBut_Click" Grid.Column="2"/>
+        <Button x:Name="ProdagBut" Content="История продаж" Height="47" Margin="8,79,10,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="ProdagBut_Click" Grid.Column="2"/>
+        <Button x:Name="HistButt" Content="История изменения цен" Height="42" Margin="8,148,10,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.Column="2" Click="HistButt_Click"/>
 
     </Grid>
 </Page>

@@ -73,11 +73,11 @@ namespace DipTradeProj
             using (TradeBDEntities db = new TradeBDEntities())
             {
                 string que = TovarCombo.Text.ToString();
-                var qd = db.Tovar.Select(p => new { p.id_tovar, p.price, p.name, p.kolvo_sklad }).Where(p => p.name.StartsWith(que)).ToList();
+                var qd = db.Tovar.Select(p => new { p.id_tovar, p.zakup_price, p.name, p.kolvo_sklad }).Where(p => p.name.StartsWith(que)).ToList();
                 var _tovar = TradeBDEntities.GetContext().Tovar.Find(qd[0].id_tovar);
                 _postCon.id_tovar = qd[0].id_tovar;
                 string que2 = PostavCombo.Text.ToString();
-                var qp = db.Postavshik.Where(p => p.postav.StartsWith(que2)).ToList();
+                var qp = db.Postavshik.Select(p=>new { p.id_postavsh, p.postav }).Where(p => p.postav.StartsWith(que2)).ToList();
                 _postCon.id_postav = qp[0].id_postavsh;
             }
             if (err.Length > 0)
@@ -115,12 +115,13 @@ namespace DipTradeProj
                         ItogPrice.Content = q.ToString();
                     }
                 }
-                _postCon = new Postavka();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+            _postCon = new Postavka();
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -148,8 +149,8 @@ namespace DipTradeProj
             using (TradeBDEntities db = new TradeBDEntities())
             {
                 string que = TovarCombo.Text.ToString();
-                var qd = db.Tovar.Select(p => new { p.id_tovar, p.price, p.name }).Where(p => p.name.Contains(que)).ToList();
-                OnePrc.Content = (qd[0].price - (qd[0].price*0.2)).ToString();
+                var qd = db.Tovar.Select(p => new { p.id_tovar, p.zakup_price, p.name }).Where(p => p.name.Contains(que)).ToList();
+                OnePrc.Content = qd[0].zakup_price.ToString();
                 ItogPrc.Content = (Convert.ToDouble(OnePrc.Content) * Convert.ToDouble(Kolvo.Text)).ToString();
             }
         }
@@ -185,8 +186,8 @@ namespace DipTradeProj
             using (TradeBDEntities db = new TradeBDEntities())
             {
                 string que = TovarCombo.Text.ToString();
-                var qd = db.Tovar.Select(p => new { p.id_tovar, p.price, p.name }).Where(p => p.name.Contains(que)).ToList();
-                OnePrc.Content = (qd[0].price - (qd[0].price * 0.2)).ToString();
+                var qd = db.Tovar.Select(p => new { p.id_tovar, p.zakup_price, p.name }).Where(p => p.name.Contains(que)).ToList();
+                OnePrc.Content = qd[0].zakup_price.ToString();
                 ItogPrc.Content = (Convert.ToDouble(OnePrc.Content) * Convert.ToDouble(Kolvo.Text)).ToString();
             }
             CancEdBut.Visibility = Visibility.Visible;
